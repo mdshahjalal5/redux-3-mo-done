@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useAppDispatch } from "@/redux/hooks";
-import { addUser, IUser } from "@/redux/user/userSlice";
+import { IUser, removeUser } from "@/redux/user/userSlice";
 interface IProps {
   user: IUser;
 }
@@ -12,14 +12,11 @@ const User = ({ user }: IProps) => {
       <p>User id {user.id}</p>
       <Button
         onClick={() => {
-          const userData = {
-            name: user.name,
-          };
-          dispatch(addUser(userData));
+          dispatch(removeUser(user.id));
         }}
         className="mt-2"
       >
-        Add User
+        Delete User
       </Button>
     </div>
   );

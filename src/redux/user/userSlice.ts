@@ -7,7 +7,7 @@ export interface IUser {
 interface InitialState2 {
   users: IUser[];
 }
-type TDraftUser = Pick<IUser, "name">;
+export type TDraftUser = Pick<IUser, "name">;
 const createUser = (user: TDraftUser): IUser => {
   return {
     ...user,
@@ -34,7 +34,10 @@ export const userSlice = createSlice({
       const userData: IUser = createUser(action.payload);
       state.users.push(userData);
     },
-    removeUser: () => {},
+    removeUser: (state, action: PayloadAction<string>) => {
+      console.log(action.payload);
+      state.users = state.users.filter((user) => user.id !== action.payload);
+    },
   },
 });
 
